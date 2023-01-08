@@ -1,92 +1,66 @@
 # sqlalchemy-challenge
 
-SQLAlchemy - Surfs Up!
+## SQLAlchemy - Surfs Up!
 Python and SQLAlchemy to do basic climate analysis and data exploration of the climate database. Using SQLAlchemy ORM queries, Pandas, and Matplotlib.
 
-surfs-up.png
 
-Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. The following outlines the tasks that must be completed to accomplish this task.
+## Step 1 - Climate Analysis and Exploration
+- Use the provided starter notebook and hawaii.sqlite files to complete your climate analysis and data exploration.
+- Use SQLAlchemy create_engine to connect to your SQLite database.
+- Use SQLAlchemy automap_base() to reflect your tables into classes and save a reference to those classes called Station and Measurement.
+- Link Python to the database by creating a SQLAlchemy session.
+- Important: Don't forget to close out your session at the end of your notebook.
 
-Step 1 - Climate Analysis and Exploration
-Use the provided starter notebook and hawaii.sqlite files to complete your climate analysis and data exploration.
+## Precipitation Analysis
+- Find the most recent data in the dataset.
+- Design a query to retrieve the last 12 months of precipitation data.
+- Select only the date and prcp values.
+- Load the query results into a Pandas DataFrame and set the index to the date column.
+- Sort the DataFrame values by date.
+- Plot the results using the DataFrame plot method.
 
-Use SQLAlchemy create_engine to connect to your SQLite database.
 
-Use SQLAlchemy automap_base() to reflect your tables into classes and save a reference to those classes called Station and Measurement.
+- Use Pandas to print the summary statistics for the precipitation data.
 
-Link Python to the database by creating a SQLAlchemy session.
+## Station Analysis
+- Design a query to calculate the total number of stations.
+- Design a query to find the most active stations (stations with the most rows).
+  - List the stations and observation counts in descending order.
+  - Which station has the highest number of observations?
+  - Using the most active station id, calculate the lowest, highest, and average temperatures.
+  
+      - Hint: You may need to use functions such as func.min, func.max, func.avg, and func.count in your queries.
 
-Important: Don't forget to close out your session at the end of your notebook.
+  - Design a query to retrieve the last 12 months of temperature observation data (TOBS).
+  - Filter by the station with the highest number of observations.
+  - Query the previous 12 months of temperature observation data for this station.
+  - Plot the results as a histogram with bins=12.
 
-Precipitation Analysis
-Find the most recent data in the dataset.
 
-Design a query to retrieve the last 12 months of precipitation data.
 
-Select only the date and prcp values.
+## Step 2 - Climate App
 
-Load the query results into a Pandas DataFrame and set the index to the date column.
-
-Sort the DataFrame values by date.
-
-Plot the results using the DataFrame plot method.
-
-precipitation
-
-Use Pandas to print the summary statistics for the precipitation data.
-Station Analysis
-Design a query to calculate the total number of stations.
-
-Design a query to find the most active stations (stations with the most rows).
-
-List the stations and observation counts in descending order.
-
-Which station has the highest number of observations?
-
-Using the most active station id, calculate the lowest, highest, and average temperatures.
-
-Hint: You may need to use functions such as func.min, func.max, func.avg, and func.count in your queries.
-
-Design a query to retrieve the last 12 months of temperature observation data (TOBS).
-
-Filter by the station with the highest number of observations.
-
-Query the previous 12 months of temperature observation data for this station.
-
-Plot the results as a histogram with bins=12.
-
-station-histogram
-
-Step 2 - Climate App
 Now that you have completed your initial analysis, design a Flask API based on the queries that you have just developed.
 
-Use Flask to create your routes.
-Routes
-/
+- Use Flask to create your routes.
 
-Home page.
+## Routes
+- /
+  - Home page.
+  - List all available routes.
 
-List all available routes.
+- /api/v1.0/precipitation
+  - Convert the query results to a dictionary using date as the key and prcp as the value.
+  - Return the JSON representation of your dictionary.
 
-/api/v1.0/precipitation
+- /api/v1.0/stations
+  - Return a JSON list of stations from the dataset.
 
-Convert the query results to a dictionary using date as the key and prcp as the value.
+- /api/v1.0/tobs
+  - Query the dates and temperature observations of the most active station for the last year of data.
+  - Return a JSON list of temperature observations (TOBS) for the previous year.
 
-Return the JSON representation of your dictionary.
-
-/api/v1.0/stations
-
-Return a JSON list of stations from the dataset.
-/api/v1.0/tobs
-
-Query the dates and temperature observations of the most active station for the last year of data.
-
-Return a JSON list of temperature observations (TOBS) for the previous year.
-
-/api/v1.0/<start> and /api/v1.0/<start>/<end>
-
-Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-
-When given the start only, calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date.
-
-When given the start and the end date, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive.
+- /api/v1.0/<start> and /api/v1.0/<start>/<end>
+  - Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
+  - When given the start only, calculate TMIN, TAVG, and TMAX for all dates greater than and equal to the start date.
+  - When given the start and the end date, calculate the TMIN, TAVG, and TMAX for dates between the start and end date inclusive.
