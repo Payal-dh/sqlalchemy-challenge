@@ -1,6 +1,3 @@
-# Import all dependencies: 
-################################################# 
-
 import numpy as np
 import sqlalchemy
 import datetime as dt
@@ -11,7 +8,6 @@ from sqlalchemy import create_engine, func
 from flask import Flask, jsonify 
 
 # Create connection to Hawaii.sqlite file
-#################################################
 
 engine = create_engine("sqlite:///hawaii.sqlite")
 
@@ -26,7 +22,6 @@ Measurement = Base.classes.measurement
 Station = Base.classes.station
 
 # Initialize Flask
-#################################################
 app = Flask(__name__)
 
 # Create Flask Routes 
@@ -58,13 +53,6 @@ def precipitation():
 
     # Close session
     session.close()
-
-    # Create a dictionary from the row data and append to a list of all_passengers
-        # 1. Create an empty list of precipitation query values 
-        # 2. Create for loop to iterate through query results (precipitation_query_results) 
-        # 3. Create dictionary with key "precipitation" set to prcp from precipitation_query_results and key "date" to date from precipitation_query_results
-        # 4. Append values from precipitation_dict to your original empty list precipitation_query_values 
-        # 5. Return JSON format of your new list that now contains the dictionary of prcp and date values to your browser
     
     precipitaton_query_values = []
     for prcp, date in precipitation_query_results:
